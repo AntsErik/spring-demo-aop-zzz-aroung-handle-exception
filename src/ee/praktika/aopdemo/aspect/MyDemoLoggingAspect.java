@@ -40,8 +40,8 @@ public class MyDemoLoggingAspect {
             //log the exception
             myLogger.warning( e.getMessage() );
 
-            //give the user a default message
-            result = "Catastrophic accident! Private helicopter on the way to pick you up!";
+            //rethrow the exception
+            throw e;
 
         }
 
