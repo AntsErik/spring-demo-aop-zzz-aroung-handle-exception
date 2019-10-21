@@ -30,7 +30,20 @@ public class MyDemoLoggingAspect {
         long begin = System.currentTimeMillis();
 
         //excecute the method
-        Object result = theProceedingJoinPoint.proceed(); //handle theProceedingJoinPoint and target proceed() to excecute
+        Object result = null;
+
+        try {
+            result = theProceedingJoinPoint.proceed();
+        }
+        catch( Exception e ) {
+
+            //log the exception
+            myLogger.warning( e.getMessage() );
+
+            //give the user a default message
+            result = "Catastrophic accident! Private helicopter on the way to pick you up!";
+
+        }
 
         //get the ending timestamp
         long end = System.currentTimeMillis();
